@@ -42,9 +42,19 @@ Project 1-
     ResourceManager.h
     WaitingList.h
   src - 
+    Main.cpp
     Node.cpp
+    ReservationList.cpp
     ReservationList.cpp
     Resource.cpp
     ResourceManager.cpp
     WaitingList.cpp
   README.md
+
+  ## How to compile
+
+g++ -o main.cpp reservation.cpp
+
+\.run main.cpp
+
+  
