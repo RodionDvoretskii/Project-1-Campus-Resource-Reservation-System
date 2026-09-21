@@ -9,13 +9,13 @@ private:
     // All the required data members for the reservation!
     int ReservationID;
     int StudentID;
-    int ResourceID;
+    string ResourceID;
     string Name;
     string ReservationDate;
 
 public:
     Reservation();                              // Default constructor
-    Reservation(int, int, int, string, string); // fully parametrized construtor
+    Reservation(int, int, string, string, string); // fully parametrized construtor
     //~Reservation();
 
     // Here we have the getters and setters for all the data members!
@@ -25,8 +25,8 @@ public:
     int get_StudentID() const;
     void set_StudentID(int);
 
-    int get_ResourceID() const;
-    void set_ResourceID(int);
+    string get_ResourceID() const;
+    void set_ResourceID(string);
 
     string get_Name() const;
     void set_Name(string);
