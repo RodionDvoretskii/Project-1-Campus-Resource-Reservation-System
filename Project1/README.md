@@ -33,7 +33,7 @@ This project uses several data structures:
 
 Project 1-
   data - 
-    reservation.txt
+    reservations.txt
     resources.txt
   include - 
     Node.h
