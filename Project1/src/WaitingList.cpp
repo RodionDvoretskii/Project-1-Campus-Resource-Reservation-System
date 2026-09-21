@@ -5,10 +5,24 @@ WaitingList::WaitingList()
     front = nullptr;
     rear = nullptr;
 }
+
+WaitingList::~WaitingList()
+{
+    while (front != nullptr)
+    {
+        WaitingNode* temp = front;
+        front = front->next;
+        delete temp;
+    }
+
+    rear = nullptr;
+}
+
 bool WaitingList::isEmpty()
 {
     return front == nullptr;
 }
+
 void WaitingList::addStudent(int studentID, string studentName, string resourceID, string date)
 {
     WaitingNode* newNode = new WaitingNode;
@@ -18,7 +32,7 @@ void WaitingList::addStudent(int studentID, string studentName, string resourceI
     newNode->resourceID = resourceID;
     newNode->date = date;
     newNode->next = nullptr;
-    
+
     if (front == nullptr)
     {
         front = newNode;
@@ -30,38 +44,48 @@ void WaitingList::addStudent(int studentID, string studentName, string resourceI
         rear = newNode;
     }
 }
-void WaitingList::removeStudent()
+
+WaitingNode WaitingList::removeStudent()
 {
     if(front == nullptr)
     {
         cout << "Waiting list is empty." <<endl;
-        return;
+        return WaitingNode();
     }
+
     WaitingNode* temp = front;
+    WaitingNode removedStudent = *temp;
+
     front = front->next;
+
     if (front == nullptr)
     {
         rear = nullptr;
     }
+
     delete temp;
+
+    removedStudent.next = nullptr;
+    return removedStudent;
 }
 
 void WaitingList::display()
 {
-    WaitingNode* current = front;
-    if (current == nullptr)
+    if(front == nullptr)
     {
         cout << "Waiting list is empty." << endl;
         return;
     }
-    while (current != nullptr)
+
+    WaitingNode* current = front;
+
+    while(current != nullptr)
     {
         cout << "Student ID: " << current->studentID << endl;
         cout << "Student Name: " << current->studentName << endl;
         cout << "Resource ID: " << current->resourceID << endl;
         cout << "Date: " << current->date << endl;
-        cout << endl;
+
         current = current->next;
     }
 }
-
