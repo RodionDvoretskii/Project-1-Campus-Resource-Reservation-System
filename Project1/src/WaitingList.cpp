@@ -32,7 +32,7 @@ void WaitingList::addStudent(int studentID, string studentName, string resourceI
 }
 void WaitingList::removeStudent()
 {
-    if(front == nullprt)
+    if(front == nullptr)
     {
         cout << "Waiting list is empty." <<endl;
         return;
@@ -64,3 +64,4 @@ void WaitingList::display()
         current = current->next;
     }
 }
+
