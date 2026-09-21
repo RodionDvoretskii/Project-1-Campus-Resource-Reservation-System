@@ -23,14 +23,15 @@ private:
 
 public:
     WaitingList();
+    ~WaitingList();
+
+    bool isEmpty();
 
     void addStudent(int studentID, string studentName, string resourceID, string date);
 
-    void removeStudent();
+    WaitingNode removeStudent();
 
     void display();
-
-    bool isEmpty();
 };
 
 #endif
