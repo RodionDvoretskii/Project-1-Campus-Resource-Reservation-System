@@ -24,7 +24,6 @@ ReservationList::~ReservationList()
 	}
 }
 
-
 void ReservationList::insertReservation(Reservation r)
 {
 	// Node constructor stores r and sets next = NULL
@@ -46,7 +45,7 @@ void ReservationList::insertReservation(Reservation r)
 }
 
 
-bool ReservationList::removeReservation(int reservationID, Reservation& removed)
+bool ReservationList::removeReservationByID(int reservationID, Reservation& removed)
 {
 	Node* previous = nullptr;
 	Node* current = head;
@@ -89,6 +88,19 @@ bool ReservationList::removeReservation(int reservationID, Reservation& removed)
 	return true;
 }
 
+bool ReservationList::removeReservationByName(string name, Reservation& removed)
+{
+    Node* current = head;
+    while (current != nullptr)
+    {
+        if (current->data.get_Name() == name)
+        {
+            return removeReservationByID(current->data.get_ReservationID(), removed);
+        }
+        current = current->next;
+    }
+    return false;
+}
 
 bool ReservationList::findReservation(int reservationID) const
 {
@@ -111,7 +123,7 @@ int ReservationList::getCount() const
 }
 
 
-void ReservationList::displayReservations() const
+void ReservationList::viewCurrentReservations() const
 {
 	if (head == nullptr)
 	{
@@ -119,17 +131,18 @@ void ReservationList::displayReservations() const
 		return;
 	}
 	
-	cout << left << setw(8) << "ResID" << setw(12) << "StudentID" << setw(22) << "Student Name"
-	     << setw(10) << "Resource" << "Date" << endl;
+	cout << "====== Reservations' Info: =====" << endl;
 	
 	Node* current = head;
 	while (current != nullptr)
 	{
-		cout << left << setw(8) << current->data.get_ReservationID()
-		     << setw(12) << current->data.get_StudentID()
-		     << setw(22) << current->data.get_Name()
-		     << setw(10) << current->data.get_ResourceID()
-		     << current->data.get_ReservationDate() << endl;
+        cout << "Reservation ID: " << current->data.get_ReservationID() << endl;
+        cout << "Student ID: " << current->data.get_StudentID() << endl;
+        cout << "Name: " << current->data.get_Name() << endl;
+        cout << "Resource ID: " << current->data.get_ResourceID() << endl;
+        cout << "Reservation Date: " << current->data.get_ReservationDate() << endl;
 		current = current->next;
+        cout << "_____________________________________________________" << endl;
 	}
+	cout << endl;
 }

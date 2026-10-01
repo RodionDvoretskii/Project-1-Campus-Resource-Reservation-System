@@ -14,7 +14,7 @@ class ResourceManager
 		int getCount() const;
 		Resource& getResource(int index);
 		bool setAvailability(string resourceID, string status);
-		void displayAll() const;
+		void viewResources() const;
 		void displayAvailability() const;
 	private:
 		vector<Resource> resources;

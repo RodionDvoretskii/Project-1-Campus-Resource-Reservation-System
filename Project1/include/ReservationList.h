@@ -25,7 +25,8 @@ class ReservationList
 		void insertReservation(Reservation r);
 		
 		// removes reservation with this ID; puts a copy into 'removed'. false if not found
-		bool removeReservation(int reservationID, Reservation& removed);
+		bool removeReservationByID(int reservationID, Reservation& removed);
+		bool removeReservationByName(string Name, Reservation& removed);
 		
 		// true if a reservation with this ID exists
 		bool findReservation(int reservationID) const;
@@ -34,7 +35,7 @@ class ReservationList
 		int getCount() const;
 		
 		// goes through the whole list and prints every reservation
-		void displayReservations() const;
+		void viewCurrentReservations() const;
 };
 
 
