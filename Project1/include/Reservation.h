@@ -1,37 +1,41 @@
-#ifndef RESERVATION_H
+#ifndef RESERVATION_H // header guard
 #define RESERVATION_H
+
+
 #include <string>
 using namespace std;
 
 class Reservation
 {
-private:
-    // All the required data members for the reservation!
-    int ReservationID;
-    int StudentID;
-    string ResourceID;
-    string Name;
-    string ReservationDate;
+    private:
+        // attributes/fields
+        int ReservationID;
+        int StudentID;
+        string ResourceID;
+        string Name;
+        string ReservationDate;
 
-public:
-    Reservation();                              // Default constructor
-    Reservation(int, int, string, string, string); // fully parametrized construtor
-    //~Reservation();
+    public:
+        // Default constructor
+        Reservation();       
+        
+        // fully parametrized construtor
+        Reservation(int ReservationID, int StudentID, string ResourceID, string Name, string ReservationDate); 
 
-    // Here we have the getters and setters for all the data members!
-    int get_ReservationID() const;
-    void set_ReservationID(int);
-
-    int get_StudentID() const;
-    void set_StudentID(int);
-
-    string get_ResourceID() const;
-    void set_ResourceID(string);
-
-    string get_Name() const;
-    void set_Name(string);
-
-    string get_ReservationDate() const;
-    void set_ReservationDate(string);
+        // getters/accessors
+        int get_ReservationID() const;
+        int get_StudentID() const;
+        string get_ResourceID() const;
+        string get_Name() const;
+        string get_ReservationDate() const;
+        
+        // setters/mutators
+        void set_ReservationID(int ReservationID);
+        void set_StudentID(int StudentID);
+        void set_ResourceID(string ResourceID);
+        void set_Name(string Name);
+        void set_ReservationDate(string ReservationDate);
 };
+
+
 #endif

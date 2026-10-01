@@ -1,21 +1,135 @@
-#include "Reservation.h"
-#include <iostream>
+#include "ResourceManager.h"
+#include "ReservationManager.h"
 #include <string>
 #include <list>
 #include <stack>
+
+#include <iostream>
 using namespace std;
 
-void printInfo(Reservation* ptr){
-    cout<<"Reservation ID is : "<<ptr->get_ReservationID()<<endl
-                        <<"Student ID is : "<<ptr->get_StudentID()<<endl
-                        <<"Resource ID is : "<< ptr->get_ResourceID()<<endl
-                        <<"Name is : "<<ptr->get_Name()<<endl
-                        <<"Reservation Date is : "<< ptr->get_ReservationDate()<<endl
-                        <<"-------------------------------------"<<endl;
+void printHeader() // banner
+{
+	cout<<"+------------------------------------------------------+"<<endl;
+	cout<<"|         Computer Science and Engineering             |"<<endl;
+	cout<<"|    CSCE 2110 - Foundations of Data Structures        |"<<endl;
+	cout<<"|     Rodion  rd0824   RodionDvoretskii@my.unt.edu     |"<<endl;
+    cout<<"|     Arumit  ******   ArumitKumar@my.unt.edu          |"<<endl;
+    cout<<"|     Vic     ves0058  VicScorgie@my.unt.edu           |"<<endl;
+	cout<<"+------------------------------------------------------+"<<endl;
+    cout << endl;
 }
+
+void printMenu()
+{
+    cout << "====== Campus Resource Reservation System ======" << endl;
+    cout << "1. View Resources" << endl;
+    cout << "2. Create Reservation" << endl;
+    cout << "3. Cancel Reservation" << endl;
+    cout << "4. View Waiting List" << endl;
+    cout << "5. Undo Cancellation" << endl;
+    cout << "6. Search Reservation" << endl;
+    cout << "7. Sort Resources" << endl;
+    cout << "8. Generate Report" << endl;
+    cout << "9. Exit" << endl;
+    cout << endl;
+    cout<<"Select an option (1-9): ";
+}
+
 
 int main()
 {
+    printHeader();
+
+    ResourceMananger resourceManager;
+    ReservationManager reservationManager;
+
+    string resourcesFile = "";
+    string reservationsFile = "";
+
+    resourceManager.readFromFile(resourcesFile);
+    reservationManager.readFromFile(reservationsFile);
+
+    while (true)
+    {
+        printMenu();
+        int choice;
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            resourceManager.viewResources();
+        }
+        else if (choice == 2)
+        {
+            reservationManager.createReservation();
+        }
+        else if (choice == 3)
+        {
+            int answer;
+            cout << "How you want to cancel reservation? 1 - by ID, 2 - by studnet name: ";
+            cin >> answer;
+
+            string name;
+            int reservationID;
+
+            if (answer == 1)
+            {
+                Reservation removed;
+
+                // by ID
+                if (reservations.removeReservationByID(301, removed))
+                {
+                    history.push(removed);
+                }
+                else
+                {
+                    cout << "Not found." << endl;
+                }
+            }
+            else if (answer == 2)
+            {
+                // by name
+                if (reservations.removeReservationByName("Alice Smith", removed))
+                {
+                    history.push(removed);
+                }
+                else
+                {
+                    cout << "Not found." << endl;
+                }
+            }
+            else
+            {
+                cout << "Wrong choice! Try again." << endl;
+            }
+        }
+        else if (choice == 4)
+        {
+
+        }
+        else if (choice == 5)
+        {
+
+        }
+        else if (choice == 6)
+        {
+
+        }
+        else if (choice == 7)
+        {
+
+        }
+        else if (choice == 8)
+        {
+
+        }
+        else
+        {
+            cout << "Thank you for using Campus Resource Reservation System!" << endl;
+            break;
+        }
+    }
+
 
     Reservation *reserveptr;// creating a Reservation class pointer to store addressed of instances
     list<Reservation*>currentReservations; //This is a temp list to check if my
@@ -29,6 +143,7 @@ int main()
     while(true)
     {
         int choice = 0;
+        cout << 
         cout << "===== Campus Resource Reservation System =====" << endl;
 
         cout << "1. Create reservations\n"
@@ -39,7 +154,7 @@ int main()
              <<"6. Exit" << endl;
         cin >> choice;
 
-        if (choice == 1)
+        if (choice == 1) // DONE
         {
             char validate;
             int ReservationID;
@@ -86,14 +201,14 @@ int main()
             }
         }
 
-        if(choice == 2){
+        if(choice == 2){ // DONE
             cout<<"Displaying Data below!"<<endl;
 
                 for(auto ptr: currentReservations){
                         printInfo(ptr);
                 }
         }
-        if(choice == 3){
+        if(choice == 3){ // DONE
             char cancel;
             cout<<"Do you want to cancel the most recent Reservation? y/n "<<endl;
             cin>>cancel;

@@ -12,39 +12,30 @@ bool ResourceManager::loadFromFile(string fileName)
 	if (fin.fail())
 	{
 		cout << "File error" << endl;
-		return false;
+		return false; // error of file-reading
 	}
-	string line, id, name, type, status;
-	
+
+	string id, name, type, status;
 	while (getline(fin, id, '|'))
 	{
-		getline(fin, name, '|');
+		getline(fin, name, '|'); // reads until '|' excluding this character
 		getline(fin, type, '|');
-		getline(fin, status);
-		
-		if (!status.empty() && status[status.size() - 1] == '\r')
-		{
-			status.erase(status.size() - 1);
-		}
-		
-		// reading failed (e.g. empty line at the end): stop
-		if (fin.fail())
-		{
-			break;
-		}
+		getline(fin, status); // read until enter/space
 		
 		Resource resource(id, name, type, status);
 		resources.push_back(resource);
 	}
 	
+	// close resources
 	fin.close();
+	// successful reading
 	return true;
 }
 
-
+// Linear Search - finding a resource by ID
 int ResourceManager::findResource(string resourceID) const
 {
-	for (int i = 0; i < (int)resources.size(); i++)
+	for (int i = 0; i < (int) resources.size(); i++)
 	{
 		if (resources[i].getResourceID() == resourceID)
 		{
@@ -81,17 +72,18 @@ bool ResourceManager::setAvailability(string resourceID, string status)
 }
 
 
-void ResourceManager::displayAll() const
+void ResourceManager::viewResources() const
 {
-	cout << left << setw(8) << "ID" << setw(24) << "Name" << setw(24) << "Type" << "Status" << endl;
-	
-	for (int i = 0; i < (int)resources.size(); i++)
+	cout << "===== Resources Info: =====" << endl; 
+
+	for (int i = 0; i < (int) resources.size(); i++)
 	{
-		cout << left << setw(8) << resources[i].getResourceID()
-		     << setw(24) << resources[i].getResourceName()
-		     << setw(24) << resources[i].getResourceType()
-		     << resources[i].getAvailabilityStatus() << endl;
+		cout << "Resource ID: " << resources[i].getResourceID() << endl;
+		cout << "Resource Name: " << resources[i].getResourceName() << endl;
+		cout << "Resource Type: " << resources[i].getResourceType() << endl;
+		cout << "Resource Availability Status: " << resources[i].getAvailabilityStatus() << endl;
 	}
+	cout << endl;
 }
 
 
