@@ -53,8 +53,10 @@ Project 1-
 
   ## How to compile
 
-g++ -o main.cpp reservation.cpp
+Compile: g++ Main.cpp Reservation.cpp ReservationList.cpp Node.cpp Resource.cpp ResourceManager.cpp WaitingList.cpp -o main
 
-\.run main.cpp
+Run: ./main
+
+(Note: If it says the file or directory does not exist, type nano <filename> and pasting/saving the code from the file to solve the issue)
 
   
