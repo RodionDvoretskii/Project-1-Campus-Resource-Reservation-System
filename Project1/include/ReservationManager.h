@@ -1,38 +1,38 @@
-#ifndef RESERVATIONMANAGER_H
-#define RESERVATIONMANAGER_H
-
-
-#include "ReservationList.h"
-#include "Reservation.h"
-#include "Resource.h"
+#ifndef RESERVATIONMANAGER.H
+#define RESERVATIONMANAGER.H
 #include <stack>
+#include <list>
+#include <string>
+#include <vector>
+#include <queue>
+#include "Resource.h"
+#include "Reservation.h"
+using namespace std;
 
+class ReservationManager{
+    private:
+        Reservation * reservptr;
+        list<Reservation*> currentReservation;
+        stack<Reservation*> cancellationStack;
+        queue<Reservation*> waitingQueue;
 
-class ReservationManager
-{
-	public:
-        void createReservation();
+    public:
+        ReservationManager();
+        ~ReservationManager();
 
-        void printInfo();
+        void viewResources()const;
+        void createReservation(string,string,string,string,string);
+        void cancelReservaton(string  ReservationID);
+        void waitingList()const;
+        void undoReservation(string ResrvationID);
+        void searchReservation(string ReservationID)const;
+        void sortResources();
+        void generateReport()const;
+        void printReservatonInfo(Reservation*)const;
+        bool loadResourcesFromFile(string fileName);
+        bool loadReservationsFromFile(string fileName);
 
-
-		bool loadFromFile(string fileName);
-        
-        // both are linear search
-		void findReservationByID(int reservationID) const;
-        void findReservationByStudentName(string Name) const;
-
-
-        // FIXME
-		int getCount() const;
-		Resource& getResource(int index);
-		bool setAvailability(string resourceID, string status);
-		void displayAll() const;
-		void displayAvailability() const;
-	private:
-		ReservationList reservations; // linked-list containing "reservations" with data type "Reservation"
-        stack<Reservation> history; // cancellations
+        void Run();
 };
-
 
 #endif

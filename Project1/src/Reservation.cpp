@@ -1,18 +1,16 @@
 #include "Reservation.h"
 #include <string>
 
-// default constructor
-Reservation::Reservation()
-{
-    ReservationID = 0;
-    StudentID = 0;
-    ResourceID = "";
-    Name = "";
-    ReservationDate = "";
-}
-                             
-// parameterized constructor
-Reservation::Reservation(int ReservationID, int StudentID, string ResourceID, string Name, string ReservationDate)
+using namespace std;
+
+/* Initializing default constructor and fully parameterized constructor */
+Reservation::Reservation() : ReservationID(""),
+                             StudentID(""),
+                             ResourceID(""),
+                             Name("NONE"),
+                             ReservationDate("0/0/00") {}
+
+Reservation::Reservation(string ReservationID, string StudentID,string ResourceID, string Name,string ReservationDate)
 {
     this->ReservationID = ReservationID;
     this->StudentID = StudentID;
@@ -20,16 +18,26 @@ Reservation::Reservation(int ReservationID, int StudentID, string ResourceID, st
     this->Name = Name;
     this->ReservationDate = ReservationDate;
 }
-                                                                                                          
-// getters/accessors
-int Reservation::get_ReservationID() const
+
+// Initializing getters and setters here
+string Reservation::get_ReservationID() const
 {
     return ReservationID;
 }
 
-int Reservation::get_StudentID() const
+void Reservation::set_ReservationID(string ReservationID)
+{
+    this->ReservationID = ReservationID;
+}
+
+string Reservation::get_StudentID() const
 {
     return StudentID;
+}
+
+void Reservation::set_StudentID(string StudentID)
+{
+    this->StudentID = StudentID;
 }
 
 string Reservation::get_ResourceID() const
@@ -37,36 +45,24 @@ string Reservation::get_ResourceID() const
     return ResourceID;
 }
 
-string Reservation::get_Name() const
-{
-    return Name;
-}
-
-string Reservation::get_ReservationDate() const
-{
-    return ReservationDate;
-}
-
-
-// setters/mutators
-void Reservation::set_ReservationID(int ReservationID)
-{
-    this->ReservationID = ReservationID;
-}
-
-void Reservation::set_StudentID(int StudentID)
-{
-    this->StudentID = StudentID;
-}
-
 void Reservation::set_ResourceID(string ResourceID)
 {
     this->ResourceID = ResourceID;
 }
 
+string Reservation::get_Name() const
+{
+    return Name;
+}
+
 void Reservation::set_Name(string Name)
 {
     this->Name = Name;
+}
+
+string Reservation::get_ReservationDate() const
+{
+    return ReservationDate;
 }
 
 void Reservation::set_ReservationDate(string ReservationDate)
