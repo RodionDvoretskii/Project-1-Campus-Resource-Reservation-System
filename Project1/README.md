@@ -36,24 +36,20 @@ Project 1-
     reservations.txt
     resources.txt
   include - 
-    Node.h
-    ReservationList.h
+    Reservation.h
     Resource.h
     ResourceManager.h
-    WaitingList.h
   src - 
     Main.cpp
-    Node.cpp
-    ReservationList.cpp
-    ReservationList.cpp
+    Reservation.cpp
+    ReservationManager.cpp
     Resource.cpp
     ResourceManager.cpp
-    WaitingList.cpp
   README.md
 
   ## How to compile
 
-Compile: g++ Main.cpp Reservation.cpp ReservationList.cpp Node.cpp Resource.cpp ResourceManager.cpp WaitingList.cpp -o main
+Compile: g++ Main.cpp Reservation.cpp ReservationManager.cpp Resource.cpp ResourceManager.cpp -o main
 
 Run: ./main
 
